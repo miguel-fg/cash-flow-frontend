@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 
-//bootstrap components
+// bootstrap components
 import Button from "react-bootstrap/Button";
 
+// call to action button (the component will get more use eventually)
 export default function CallToAction(props) {
     return (
         <div className="col-md-12 text-center">

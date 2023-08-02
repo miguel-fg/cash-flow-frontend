@@ -1,4 +1,5 @@
 import { React } from "react";
+import { useState } from 'react';
 
 // bootstrap components
 import { LinkContainer } from "react-router-bootstrap";
@@ -6,15 +7,15 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
-import { useState } from 'react';
 import AuthModal from "./auth/AuthModal";
 
 export default function NavBar() {
+    //login modal state
     const [show, setShow] = useState(false);
-
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
 
+    // Web application navbar
     return (
         <>
         <Navbar expand="lg" variant="light">

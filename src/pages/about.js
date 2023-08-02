@@ -4,6 +4,14 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import CloseButton from "react-bootstrap/CloseButton";
 
+/* 
+    Miguel Angel Fierro Gutierrez
+    100385947
+    CPSC-2261-M01 Web Technology
+    Summer 2023
+*/
+
+// About me page
 export default function About() {
     return (
         <Container className="main-container">

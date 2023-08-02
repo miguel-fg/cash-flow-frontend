@@ -1,11 +1,13 @@
+// recharts components
 import { RadarChart, ResponsiveContainer, PolarGrid, PolarAngleAxis,Radar } from "recharts";
 
 export default function CategoryChart(props){
-    //building the data for the graph
+    // app state
     const { transactions, isLoading } = props;
     let data = {}
     let objData = {}
     
+    //building the data for the graph
     if(!isLoading && transactions !== null){
         for(const index in transactions){
             const category = transactions[index].category;
@@ -22,6 +24,7 @@ export default function CategoryChart(props){
         }));
     }
 
+    // category area chart
     return(
         <ResponsiveContainer width="100%" height="100%">
             <RadarChart data={objData}>

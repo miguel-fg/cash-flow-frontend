@@ -1,3 +1,4 @@
+// recharts components
 import {
     LineChart,
     XAxis,
@@ -8,10 +9,12 @@ import {
 } from "recharts";
 
 export default function SpendingChart(props) {
+    // app state
     const { transactions, isLoading } = props;
 
     let data = [];
 
+    //building the data for the graph
     if (!isLoading && transactions !== null) {
         let spending = 0;
 
@@ -29,6 +32,7 @@ export default function SpendingChart(props) {
         }
     }
 
+    // spending graph
     return (
         <ResponsiveContainer>
             <LineChart data={data} margin={{bottom: 110}}>

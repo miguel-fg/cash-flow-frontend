@@ -7,15 +7,19 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
 export default function TransactionForm(props) {
+    // transaction object state
     const [title, setTitle] = useState("");
     const [type, setType] = useState("Expense");
     const [amount, setAmount] = useState("");
     const [category, setCategory] = useState("");
+
+    //form validation state
     const [validated, setValidated] = useState(false);
 
+    // form submission
     const handleSubmit = (e) => {
         const form = e.currentTarget;
-        if (form.checkValidity() === false) {
+        if (form.checkValidity() === false) { //form validation
             e.preventDefault();
             e.stopPropagation();
         } else {
@@ -26,6 +30,7 @@ export default function TransactionForm(props) {
         setValidated(true);
     };
 
+    // post request
     const sendData = () => {
         const apiURL =
             "https://cash-flow-backend-s703.onrender.com/api/transactions/";
@@ -101,7 +106,7 @@ export default function TransactionForm(props) {
                                 </span>
                             </Form.Label>
                             <Form.Control
-                                type="text"
+                                type="number"
                                 placeholder="0.00"
                                 value={amount}
                                 onChange={(e) => {

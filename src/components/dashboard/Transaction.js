@@ -12,6 +12,7 @@ export default function Transaction(props) {
     // date formatting
     const date = new Date(post.createdAt).toDateString();
 
+    // delete request
     const handleDelete = (e) => {
         const id = post._id;
 
@@ -28,6 +29,7 @@ export default function Transaction(props) {
             });
     };
 
+    // transaction card component
     return (
         <Container className="transaction-card rounded">
             <Stack direction="horizontal">

@@ -10,9 +10,12 @@ import {
 } from "recharts";
 
 export default function MainChart(props) {
+    // app state
     const { transactions, isLoading } = props;
+
     let data = {}
 
+    // building the data for the graph
     if(!isLoading && transactions !== null){
         const dates = transactions.map((transaction) =>
             new Date(transaction.createdAt).toLocaleDateString()
@@ -31,6 +34,7 @@ export default function MainChart(props) {
         }));
     }
 
+    // main balance graph
     return (
         <ResponsiveContainer className="main-chart-responsive-container">
         <LineChart data={data} margin={{bottom: 110}}>

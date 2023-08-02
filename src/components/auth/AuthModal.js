@@ -1,7 +1,9 @@
+// bootstrap components
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import AuthForm from "./AuthForm";
 
+// authentication modal design
 export default function AuthModal(props) {
     return (
         <Modal show={props.show} onHide={props.closeModal} centered>

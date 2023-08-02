@@ -1,5 +1,7 @@
+// bootstrap components
 import Form from 'react-bootstrap/Form';
 
+// UNIMPLEMENTED: Authentication form
 export default function AuthForm(){
     return (
         <Form>

@@ -14,14 +14,16 @@ import CategoryChart from "../components/dashboard/charts/CategoryChart";
 import SpendingChart from "../components/dashboard/charts/SpendingChart";
 
 export default function Dashboard() {
+    // transaction state
     const [appState, setAppState] = useState({
         loading: false,
         transactions: null,
     });
-    
 
+    // function to request all transactions from the DB
     const getTransactions = () => {
-        const apiURL = "https://cash-flow-backend-s703.onrender.com/api/transactions/";
+        const apiURL =
+            "https://cash-flow-backend-s703.onrender.com/api/transactions/";
 
         axios.get(apiURL).then((response) => {
             const allTransactions = response.data;
@@ -43,7 +45,7 @@ export default function Dashboard() {
                         <span className="dashboard-card-title">
                             Transactions
                         </span>
-                        <TransactionForm setAppState={setAppState}/>
+                        <TransactionForm setAppState={setAppState} />
                         <Transactions
                             isLoading={appState.loading}
                             transactions={appState.transactions}
@@ -80,7 +82,10 @@ export default function Dashboard() {
                             <span className="dashboard-card-title">
                                 Spending history
                             </span>
-                            <SpendingChart isLoading={appState.loading} transactions={appState.transactions} />
+                            <SpendingChart
+                                isLoading={appState.loading}
+                                transactions={appState.transactions}
+                            />
                         </Col>
                     </Row>
                 </Container>
