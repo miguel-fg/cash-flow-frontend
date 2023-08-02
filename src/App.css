@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Sen&family=Space+Grotesk&display=swap');
+
+body{
+  background-color: #f5f5fb;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar{
+  display: none;
+}
+
+/******** Nav bar styles ********/
+.navbar-text{
+  font-family: 'Space Grotesk', sans-serif;
+  color: #19193b;
+}
+
+.cash-flow {
+  color: #fe616f;
+  font-weight: 600;
+  margin-left: 10px;
+}
+
+.login-button{
+  color: white;
+}
+
+.nav-container {
+  width: 90%;
+  padding-top: 0.5%;
+  padding-bottom: 0.5%;
+  background-color: #f7e5e9;
+}
+.nav-link {
+  margin-right: 2%;
+}
+
+/******** Main page styles ********/
+
+.main-container{
+  padding-top: 20vh;
+}
+
+.super-title {
+  font-size: 4em;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  color:#19193b
+}
+
+.under-title {
+  font-size: 1.5em;
+  font-weight: lighter;
+  padding-bottom: 15%;
+  font-family: 'Space Grotesk', sans-serif;
+  color:#19193b
+}
+
+.call-to-act{
+  width: 40%;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.show-off-graph {
+  border-radius: 5%;
+}
+
+.bold {
+  font-weight: bold;
+  color: #fe616f
+}
+
+/******** About page styles ********/
+
+.about-paragraph {
+  font-size: 1.5em;
+  font-weight: lighter;
+  padding-bottom: 3vh;
+  font-family: 'Space Grotesk', sans-serif;
+  color: #19193b;
+  text-align: justify;
+}
+
+li{
+  padding-bottom: 2vh;
+}

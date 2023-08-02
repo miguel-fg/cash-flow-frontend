@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Sen&family=Space+Grotesk&display=swap');
+
+.dashboard-stack{
+    width: 91%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.transaction-container{
+    width: 30%;
+    height: 90vh;
+    background-color: transparent;
+    padding: 10px;
+    overflow-y: scroll;
+    background-color: #f7e5e9;
+
+    scrollbar-width: none;
+}
+
+.transaction-container::-webkit-scrollbar {
+    display: none;
+}
+
+.dashboard-card{
+    height: 43vh;
+    background-color: transparent;
+}
+
+.pie-chart{
+    width: 63vh;
+    margin-right: 1vh;
+}
+
+.goals{
+    width: 63vh;
+}
+
+.main-chart{
+    height: 46vh;
+    background-color: transparent;
+    margin-bottom: 1vh;
+}
+
+.dashboard-card-title{
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 500;
+    margin-bottom: 20px;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #19193b;
+}
+
+.transaction-card{
+    margin-top: 20px;
+    border: 1px solid #dee2e6;
+    background-color: #fefefe;
+}
+
+.transaction-title{
+    font-size: larger;
+    font-weight: 500;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.transaction-date{
+    font-weight:100;
+    font-size: large;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #a5a5c5;
+}
+
+.transaction-amount{
+    font-weight: 500;
+}
+
+.delete-transaction-button{
+    margin-left: 2vh;
+}
+
+.typeRed{
+    color: #fe616f;
+}
+
+.typeGreen{
+    color: #5e81f4;
+}
+
+.main-chart-responsive-container{
+    height: 90%;
+}
+
+.accordion-title-text{
+    color: #19193b;
+    font-size: large;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.form-text {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.form-label{
+    font-size: large;
+    color: #19193b;
+}
+
+.add-button {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: large;
+}
