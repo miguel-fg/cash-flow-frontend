@@ -20,7 +20,7 @@ export default function Dashboard() {
     });
 
     const getTransactions = () => {
-        const apiURL = "http://localhost:5000/api/transactions/";
+        const apiURL = "https://cash-flow-backend-s703.onrender.com/api/transactions/";
 
         axios.get(apiURL).then((response) => {
             const allTransactions = response.data;

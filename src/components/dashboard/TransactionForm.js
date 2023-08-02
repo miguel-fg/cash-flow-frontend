@@ -19,7 +19,7 @@ export default function TransactionForm() {
             e.preventDefault();
             e.stopPropagation();
         } else {
-            const apiURL = "http://localhost:5000/api/transactions/";
+            const apiURL = "https://cash-flow-backend-s703.onrender.com/api/transactions/";
             const transaction = { title, type, amount, category };
     
             axios.post(apiURL, transaction);
