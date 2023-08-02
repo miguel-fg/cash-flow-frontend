@@ -18,6 +18,7 @@ export default function Dashboard() {
         loading: false,
         transactions: null,
     });
+    
 
     const getTransactions = () => {
         const apiURL = "https://cash-flow-backend-s703.onrender.com/api/transactions/";
@@ -42,7 +43,7 @@ export default function Dashboard() {
                         <span className="dashboard-card-title">
                             Transactions
                         </span>
-                        <TransactionForm />
+                        <TransactionForm setAppState={setAppState}/>
                         <Transactions
                             isLoading={appState.loading}
                             transactions={appState.transactions}

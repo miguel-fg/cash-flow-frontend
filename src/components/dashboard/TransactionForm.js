@@ -6,7 +6,7 @@ import Accordion from "react-bootstrap/Accordion";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-export default function TransactionForm() {
+export default function TransactionForm(props) {
     const [title, setTitle] = useState("");
     const [type, setType] = useState("Expense");
     const [amount, setAmount] = useState("");
@@ -19,18 +19,21 @@ export default function TransactionForm() {
             e.preventDefault();
             e.stopPropagation();
         } else {
-            const apiURL = "https://cash-flow-backend-s703.onrender.com/api/transactions/";
-            const transaction = { title, type, amount, category };
-    
-            axios.post(apiURL, transaction);
-    
-            setTitle("");
-            setAmount("");
-            setCategory("");
+            e.preventDefault();
+            sendData();
         }
 
         setValidated(true);
+    };
 
+    const sendData = () => {
+        const apiURL =
+            "https://cash-flow-backend-s703.onrender.com/api/transactions/";
+        const transaction = { title, type, amount, category };
+
+        axios.post(apiURL, transaction).then(()=>{
+            window.location.reload(false);
+        });
     };
 
     return (
