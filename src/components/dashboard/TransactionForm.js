@@ -33,7 +33,7 @@ export default function TransactionForm(props) {
     // post request
     const sendData = () => {
         const apiURL =
-            "https://cash-flow-backend-s703.onrender.com/api/transactions/";
+            "http://localhost:5000/api/transactions/";
         const transaction = { title, type, amount, category };
 
         axios.post(apiURL, transaction).then(()=>{

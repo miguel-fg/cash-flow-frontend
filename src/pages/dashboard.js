@@ -23,7 +23,7 @@ export default function Dashboard() {
     // function to request all transactions from the DB
     const getTransactions = () => {
         const apiURL =
-            "https://cash-flow-backend-s703.onrender.com/api/transactions/";
+            "http://localhost:5000/api/transactions/";
 
         axios.get(apiURL).then((response) => {
             const allTransactions = response.data;

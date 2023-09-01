@@ -16,7 +16,7 @@ export default function Transaction(props) {
     const handleDelete = (e) => {
         const id = post._id;
 
-        const apiURL = `https://cash-flow-backend-s703.onrender.com/api/transactions/${id}`;
+        const apiURL = `http://localhost:5000/api/transactions/${id}`;
 
         axios
             .delete(apiURL)
