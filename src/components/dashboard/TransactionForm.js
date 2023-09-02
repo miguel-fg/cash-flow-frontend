@@ -1,10 +1,12 @@
 import { useState } from "react";
-import axios from "axios";
 
 // bootstrap components
 import Accordion from "react-bootstrap/Accordion";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+
+// hooks
+import { useTransactionsContext } from "../../hooks/useTransactionsContext";
 
 export default function TransactionForm(props) {
     // transaction object state
@@ -14,7 +16,11 @@ export default function TransactionForm(props) {
     const [category, setCategory] = useState("");
 
     //form validation state
+    
     const [validated, setValidated] = useState(false);
+
+    // transaction hook
+    const { dispatch } = useTransactionsContext();
 
     // form submission
     const handleSubmit = (e) => {
@@ -31,14 +37,29 @@ export default function TransactionForm(props) {
     };
 
     // post request
-    const sendData = () => {
+    const sendData = async () => {
         const apiURL =
             "http://localhost:5000/api/transactions/";
         const transaction = { title, type, amount, category };
 
-        axios.post(apiURL, transaction).then(()=>{
-            window.location.reload(false);
-        });
+        const response = await fetch(apiURL, {
+            method: "POST",
+            body: JSON.stringify(transaction),
+            headers: {"Content-Type": "application/json"},
+        })
+
+        const data = await response.json();
+
+        if(response.ok) {
+            setTitle("");
+            setType("Expense");
+            setAmount("");
+            setCategory("");
+            setValidated(false);
+
+            console.log("new transaction added!");
+            dispatch({type: "CREATE_TRANSACTION", payload: data});
+        }
     };
 
     return (

@@ -1,14 +1,17 @@
+// hooks
+import { useTransactionsContext } from "../../../hooks/useTransactionsContext";
+
 // recharts components
 import { RadarChart, ResponsiveContainer, PolarGrid, PolarAngleAxis,Radar } from "recharts";
 
-export default function CategoryChart(props){
+export default function CategoryChart(){
     // app state
-    const { transactions, isLoading } = props;
+    const { transactions } = useTransactionsContext();
     let data = {}
     let objData = {}
     
     //building the data for the graph
-    if(!isLoading && transactions !== null){
+    if(transactions){
         for(const index in transactions){
             const category = transactions[index].category;
             if(category in data){

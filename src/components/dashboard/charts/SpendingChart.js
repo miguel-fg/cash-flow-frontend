@@ -1,3 +1,6 @@
+// hooks
+import { useTransactionsContext } from "../../../hooks/useTransactionsContext";
+
 // recharts components
 import {
     LineChart,
@@ -8,14 +11,14 @@ import {
     ResponsiveContainer,
 } from "recharts";
 
-export default function SpendingChart(props) {
+export default function SpendingChart() {
     // app state
-    const { transactions, isLoading } = props;
+    const { transactions } = useTransactionsContext();
 
     let data = [];
 
     //building the data for the graph
-    if (!isLoading && transactions !== null) {
+    if (transactions) {
         let spending = 0;
 
         const transactionEntries = Object.entries(transactions).reverse();
