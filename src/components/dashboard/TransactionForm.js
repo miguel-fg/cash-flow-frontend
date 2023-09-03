@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 // hooks
 import { useTransactionsContext } from "../../hooks/useTransactionsContext";
 
-export default function TransactionForm(props) {
+export default function TransactionForm() {
     // transaction object state
     const [title, setTitle] = useState("");
     const [type, setType] = useState("Expense");
@@ -39,7 +39,7 @@ export default function TransactionForm(props) {
     // post request
     const sendData = async () => {
         const apiURL =
-            "http://localhost:5000/api/transactions/";
+            "https://cash-flow-backend-zt10.onrender.com/api/transactions/";
         const transaction = { title, type, amount, category };
 
         const response = await fetch(apiURL, {
