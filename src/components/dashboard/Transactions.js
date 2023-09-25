@@ -12,7 +12,7 @@ export default function Transactions() {
     // transaction list container
     return (
         <Container fluid>
-            { transactions && transactions.map((transaction) =>{
+            { transactions && transactions?.map((transaction) =>{
                 return(
                     <Transaction key={transaction._id} post={transaction} />
                 );
