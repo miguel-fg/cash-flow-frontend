@@ -13,9 +13,6 @@ export default function Transaction(props) {
     const { post } = props;
     const { dispatch } = useTransactionsContext();
 
-    // money amount styling
-    const typeColor = post.type === "Expense" ? "typeRed" : "typeGreen";
-
     // delete request
     const handleDelete = async () => {
         const id = post._id;
@@ -30,17 +27,20 @@ export default function Transaction(props) {
         }
     };
 
+    // money amount styling
+    const typeColor = post.type === "Expense" ? "typeRed" : "typeGreen";
+    // date formatting
+    const date = post.createdAt
+        ? formatDistanceToNow(new Date(post.createdAt))
+        : null;
+
     // transaction card component
     return (
         <Container className="transaction-card rounded" key={post._id}>
             <Stack direction="horizontal">
                 <Stack className="hello">
                     <span className="transaction-title">{post.title}</span>
-                    <span className="transaction-date">
-                        {formatDistanceToNow(new Date(post.createdAt), {
-                            addSuffix: true,
-                        })}
-                    </span>
+                    <span className="transaction-date">{date}</span>
                 </Stack>
                 <div className="amount-container">
                     <span className={`transaction-amount ${typeColor}`}>
