@@ -28,7 +28,7 @@ export default function SpendingChart() {
                 const value = transaction.amount
                 spending += value;
                 data.push({
-                    date: new Date(transaction.createdAt).toLocaleDateString(),
+                    date: new Date(transaction.createdAt).toLocaleDateString("en-ZA"),
                     amount: spending,
                 });
             }
