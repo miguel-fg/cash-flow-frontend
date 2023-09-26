@@ -24,7 +24,7 @@ export default function Dashboard() {
         // function to request all transactions from the DB
         const getTransactions = async () => {
             const apiURL =
-                "https://cash-flow-backend-zt10.onrender.com/api/transactions/";
+                "http://localhost:5000/api/transactions/";
 
             const response = await fetch(apiURL);
             const data = await response.json();
