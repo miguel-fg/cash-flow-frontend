@@ -30,10 +30,9 @@ export default function Transaction(props) {
     // money amount styling
     const typeColor = post.type === "Expense" ? "typeRed" : "typeGreen";
     // date formatting
-    /*const date = post.createdAt
+    const date = post.createdAt
         ? formatDistanceToNow(new Date(post.createdAt))
-        : null;*/
-    const date = new Date(post.createdAt).toLocaleDateString("en-ZA"); 
+        : null;
 
     // transaction card component
     return (
