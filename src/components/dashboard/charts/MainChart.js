@@ -21,7 +21,7 @@ export default function MainChart() {
     // building the data for the graph
     if(transactions){
         const dates = transactions.map((transaction) =>
-            new Date(transaction.createdAt).toLocaleDateString()
+            new Date(transaction.createdAt).toLocaleDateString("en-ZA")
         );
         const amounts = transactions.map(function (transaction) {
             return transaction.type === "Expense"
