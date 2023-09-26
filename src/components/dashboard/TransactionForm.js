@@ -56,7 +56,6 @@ export default function TransactionForm() {
             setAmount("");
             setCategory("");
             setValidated(false);
-
             console.log("new transaction added!");
             dispatch({type: "CREATE_TRANSACTION", payload: data});
         }

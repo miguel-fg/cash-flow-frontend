@@ -34,6 +34,8 @@ export default function Transaction(props) {
         ? formatDistanceToNow(new Date(post.createdAt))
         : null;
 
+
+
     // transaction card component
     return (
         <Container className="transaction-card rounded" key={post._id}>
