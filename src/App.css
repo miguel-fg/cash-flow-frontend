@@ -1,7 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inconsolata&family=Sen&family=Space+Grotesk&display=swap');
 
+:root{
+  --accent-colour: #F3616F;
+  --section-colour: #F7E5E9;
+  --background-colour: #F5F5FB;
+  --text-colour: #19193B;
+  --secondary-accent: #4D4CAC;
+
+  --app-font: 'Space Grotesk', sans-serif;
+}
+
 body{
-  background-color: #f5f5fb;
+  background-color: var(--background-colour);
   scrollbar-width: none;
 }
 
@@ -11,25 +21,21 @@ body::-webkit-scrollbar{
 
 /******** Nav bar styles ********/
 .navbar-text{
-  font-family: 'Space Grotesk', sans-serif;
-  color: #19193b;
+  font-family: var(--app-font);
+  color: var(--text-colour);
 }
 
 .cash-flow {
-  color: #fe616f;
+  color: var(--accent-colour);
   font-weight: 600;
   margin-left: 10px;
-}
-
-.login-button{
-  color: white;
 }
 
 .nav-container {
   width: 90%;
   padding-top: 0.5%;
   padding-bottom: 0.5%;
-  background-color: #f7e5e9;
+  background-color: var(--section-colour);
 }
 .nav-link {
   margin-right: 2%;
@@ -44,43 +50,68 @@ body::-webkit-scrollbar{
 .super-title {
   font-size: 4em;
   font-weight: 600;
-  font-family: 'Space Grotesk', sans-serif;
-  color:#19193b
+  font-family: var(--app-font);
+  color: var(--text-colour);
 }
 
 .under-title {
   font-size: 1.5em;
   font-weight: lighter;
   padding-bottom: 15%;
-  font-family: 'Space Grotesk', sans-serif;
-  color:#19193b
+  font-family: var(--app-font);
+  color: var(--text-colour);
 }
 
 .call-to-act{
   width: 40%;
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--app-font);
+  background-color: var(--secondary-accent) !important;
+  border: none;
 }
 
 .show-off-graph {
   border-radius: 5%;
 }
 
-.bold {
-  font-weight: bold;
-  color: #fe616f
+/******** Signup/Login styles ********/
+
+.form-card{
+  background-color: var(--section-colour);
+  margin-top: 20vh;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding-top: 5%;
+  padding-bottom: 5%;
 }
 
-/******** About page styles ********/
-
-.about-paragraph {
-  font-size: 1.5em;
-  font-weight: lighter;
-  padding-bottom: 3vh;
-  font-family: 'Space Grotesk', sans-serif;
-  color: #19193b;
-  text-align: justify;
+.form-divider{
+  color: var(--accent-colour);
 }
 
-li{
-  padding-bottom: 2vh;
+.form-card h1{
+  text-align: center;
+  font-family: var(--app-font);
+  color: var(--text-colour);
+}
+
+.user-form{
+  width: 80%;
+  max-width: 30em;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+
+  font-family: var(--app-font);
+}
+
+.form-label{
+  color: var(--accent-colour) !important;
+  font-weight: bolder;
+}
+
+.btn{
+  background-color: var(--secondary-accent) !important;
+  border: none;
 }
