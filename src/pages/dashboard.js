@@ -15,10 +15,14 @@ import Stack from "react-bootstrap/Stack";
 
 // hooks
 import { useTransactionsContext } from "../hooks/useTransactionsContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function Dashboard() {
     // transaction state
     const { dispatch }  = useTransactionsContext();
+
+    // user state
+    const { user } = useAuthContext();
     
     useEffect(() => {
         // function to request all transactions from the DB
@@ -26,7 +30,12 @@ export default function Dashboard() {
             const apiURL =
                 "http://localhost:5000/api/transactions/";
 
-            const response = await fetch(apiURL);
+            // sends authorization token as part of the request
+            const response = await fetch(apiURL, {
+                headers: {
+                    "Authorization": `Bearer ${user.token}`
+                }
+            });
             const data = await response.json();
 
             if(response.ok){
@@ -34,8 +43,12 @@ export default function Dashboard() {
             }
         };
 
-        getTransactions();
-    }, [dispatch]);
+        // only try to get transactions if a user exists
+        if(user){
+            getTransactions();
+        }
+
+    }, [dispatch, user]);
 
     return (
         <Container fluid className="dashboard-container">

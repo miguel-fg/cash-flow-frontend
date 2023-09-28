@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 
 // hooks
 import { useTransactionsContext } from "../../hooks/useTransactionsContext";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 export default function TransactionForm() {
     // transaction object state
@@ -16,16 +17,25 @@ export default function TransactionForm() {
     const [category, setCategory] = useState("");
 
     //form validation state
-    
     const [validated, setValidated] = useState(false);
 
     // transaction hook
     const { dispatch } = useTransactionsContext();
 
+    // user hook
+    const { user } = useAuthContext();
+
     // form submission
     const handleSubmit = (e) => {
+
+        // exits function if there is no user 
+        if(!user){
+            return
+        }
+
         const form = e.currentTarget;
-        if (form.checkValidity() === false) { //form validation
+        if (form.checkValidity() === false) {
+            //form validation
             e.preventDefault();
             e.stopPropagation();
         } else {
@@ -38,26 +48,28 @@ export default function TransactionForm() {
 
     // post request
     const sendData = async () => {
-        const apiURL =
-            "http://localhost:5000/api/transactions/";
+        const apiURL = "http://localhost:5000/api/transactions/";
         const transaction = { title, type, amount, category };
 
         const response = await fetch(apiURL, {
             method: "POST",
             body: JSON.stringify(transaction),
-            headers: {"Content-Type": "application/json"},
-        })
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${user.token}`,
+            },
+        });
 
         const data = await response.json();
 
-        if(response.ok) {
+        if (response.ok) {
             setTitle("");
             setType("Expense");
             setAmount("");
             setCategory("");
             setValidated(false);
             console.log("new transaction added!");
-            dispatch({type: "CREATE_TRANSACTION", payload: data});
+            dispatch({ type: "CREATE_TRANSACTION", payload: data });
         }
     };
 
