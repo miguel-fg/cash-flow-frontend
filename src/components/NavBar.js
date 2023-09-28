@@ -5,8 +5,17 @@ import { LinkContainer } from "react-router-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import Button from "react-bootstrap/Button";
+
+// logout custom hook
+import { useLogout } from "../hooks/useLogout";
 
 export default function NavBar() {
+    const { logout } = useLogout();
+
+    const handleClick = () => {
+        logout();
+    }
 
     // Web application navbar
     return (
@@ -25,6 +34,7 @@ export default function NavBar() {
                         <LinkContainer to="/signup" className="nav-link">
                             <Nav.Link><span className="navbar-text">Sign up</span></Nav.Link>
                         </LinkContainer>
+                        <Button className="btn" onClick={handleClick}>Logout</Button>
                         <LinkContainer to="/dashboard" className="nav-link">
                             <Nav.Link><span className="navbar-text">Dashboard</span></Nav.Link>
                         </LinkContainer>

@@ -5,15 +5,20 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+// login custom hook
+import { useLogin } from "../hooks/useLogin";
+
 // About me page
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const { login, error, isLoading } = useLogin();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(email, password);
+        await login(email, password);
     }
 
     return (
@@ -29,9 +34,10 @@ const Login = () => {
                     <Form.Label className="form-label">Password</Form.Label>
                     <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
                 </Form.Group>
-                <Button type="submit" className="btn">
-                    Login
+                <Button type="submit" className="btn" disabled={isLoading}>
+                {isLoading ? "Loading..." : "Login"}
                 </Button>
+                {error && <div className="user-form-error rounded">{error}</div>}
             </Form>
         </Container>
     );

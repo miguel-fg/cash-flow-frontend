@@ -115,3 +115,12 @@ body::-webkit-scrollbar{
   background-color: var(--secondary-accent) !important;
   border: none;
 }
+
+.user-form-error {
+  margin-top: 2em;
+  text-align: center;
+  border: 1px solid var(--accent-colour);
+  padding-top: 1em;
+  padding-bottom: 1em;
+  color: var(--accent-colour);
+}
