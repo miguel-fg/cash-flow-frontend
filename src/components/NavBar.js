@@ -26,7 +26,7 @@ export default function NavBar() {
         <>
             <Navbar expand="lg" variant="light">
                 <Container fluid className="nav-container rounded">
-                    <LinkContainer to={user ? "/dashboard" : "/"} className="nav-title-link">
+                    <LinkContainer to="/" className="nav-title-link">
                         <Navbar.Brand>
                             <span className="navbar-text cash-flow">
                                 Cash Flow
