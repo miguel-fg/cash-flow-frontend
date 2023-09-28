@@ -124,3 +124,7 @@ body::-webkit-scrollbar{
   padding-bottom: 1em;
   color: var(--accent-colour);
 }
+
+.logout {
+  margin-left: 1em;
+}
