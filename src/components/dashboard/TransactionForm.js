@@ -48,7 +48,7 @@ export default function TransactionForm() {
 
     // post request
     const sendData = async () => {
-        const apiURL = "http://localhost:5000/api/transactions/";
+        const apiURL = "https://cash-flow-backend-zt10.onrender.com/api/transactions/";
         const transaction = { title, type, amount, category };
 
         const response = await fetch(apiURL, {

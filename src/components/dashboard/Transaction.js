@@ -26,7 +26,7 @@ export default function Transaction(props) {
 
         const id = post._id;
 
-        const apiURL = `http://localhost:5000/api/transactions/${id}`;
+        const apiURL = `https://cash-flow-backend-zt10.onrender.com/api/transactions/${id}`;
 
         const response = await fetch(apiURL, { method: "DELETE", headers: {
             "Authorization": `Bearer ${user.token}`
