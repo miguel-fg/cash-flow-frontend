@@ -1,5 +1,4 @@
 import { React } from "react";
-import { useState } from 'react';
 
 // bootstrap components
 import { LinkContainer } from "react-router-bootstrap";
@@ -7,37 +6,75 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
-import AuthModal from "./auth/AuthModal";
+
+// logout custom hook
+import { useLogout } from "../hooks/useLogout";
+
+// user context
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function NavBar() {
-    //login modal state
-    const [show, setShow] = useState(false);
-    const handleShow = () => setShow(true);
-    const handleClose = () => setShow(false);
+    const { logout } = useLogout();
+    const { user } = useAuthContext();
+
+    const handleClick = () => {
+        logout();
+    };
 
     // Web application navbar
     return (
         <>
-        <Navbar expand="lg" variant="light">
-            <Container fluid className="nav-container rounded">
-                <LinkContainer to="/" className="nav-title-link">
-                    <Navbar.Brand><span className="navbar-text cash-flow">Cash Flow</span></Navbar.Brand>
-                </LinkContainer>
-                <Navbar.Toggle />
-                <Navbar.Collapse className="justify-content-end">
-                    <Nav className="justify-content-end flex-grow-1 pe-2">
-                        <LinkContainer to="/about" className="nav-link">
-                            <Nav.Link><span className="navbar-text">Documentation</span></Nav.Link>
-                        </LinkContainer>
-                        <LinkContainer to="/dashboard" className="nav-link">
-                            <Nav.Link><span className="navbar-text">Dashboard</span></Nav.Link>
-                        </LinkContainer>
-                        <Button onClick={handleShow} className="navbar-text login-button">Login</Button>
-                    </Nav>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-        <AuthModal show={show} closeModal={handleClose} />
+            <Navbar expand="lg" variant="light">
+                <Container fluid className="nav-container rounded">
+                    <LinkContainer to="/" className="nav-title-link">
+                        <Navbar.Brand>
+                            <span className="navbar-text cash-flow">
+                                Cash Flow
+                            </span>
+                        </Navbar.Brand>
+                    </LinkContainer>
+                    <Navbar.Toggle />
+                    <Navbar.Collapse className="justify-content-end">
+                        <Nav className="justify-content-end flex-grow-1 pe-2">
+                            {!user && (
+                                <>
+                                    <LinkContainer
+                                        to="/login"
+                                        className="nav-link"
+                                    >
+                                        <Nav.Link>
+                                            <span className="navbar-text">
+                                                Login
+                                            </span>
+                                        </Nav.Link>
+                                    </LinkContainer>
+                                    <LinkContainer
+                                        to="/signup"
+                                        className="nav-link"
+                                    >
+                                        <Nav.Link>
+                                            <span className="navbar-text">
+                                                Sign up
+                                            </span>
+                                        </Nav.Link>
+                                    </LinkContainer>
+                                </>
+                            )}
+                            {user && (
+                                <div>
+                                    <span className="navbar-text">{user.email}</span>
+                                    <Button
+                                        className="btn logout"
+                                        onClick={handleClick}
+                                    >
+                                        Logout
+                                    </Button>
+                                </div>
+                            )}
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
         </>
     );
 }

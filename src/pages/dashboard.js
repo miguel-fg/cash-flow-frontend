@@ -1,41 +1,54 @@
+import { useEffect } from "react";
+
+// components
 import TransactionForm from "../components/dashboard/TransactionForm";
 import Transactions from "../components/dashboard/Transactions";
 import MainChart from "../components/dashboard/charts/MainChart";
-
-import axios from "axios";
-import { useEffect, useState } from "react";
+import CategoryChart from "../components/dashboard/charts/CategoryChart";
+import SpendingChart from "../components/dashboard/charts/SpendingChart";
 
 // bootstrap components
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Stack from "react-bootstrap/Stack";
-import CategoryChart from "../components/dashboard/charts/CategoryChart";
-import SpendingChart from "../components/dashboard/charts/SpendingChart";
+
+// hooks
+import { useTransactionsContext } from "../hooks/useTransactionsContext";
+import { useAuthContext } from "../hooks/useAuthContext";
 
 export default function Dashboard() {
     // transaction state
-    const [appState, setAppState] = useState({
-        loading: false,
-        transactions: null,
-    });
+    const { dispatch }  = useTransactionsContext();
 
-    // function to request all transactions from the DB
-    const getTransactions = () => {
-        const apiURL =
-            "http://localhost:5000/api/transactions/";
-
-        axios.get(apiURL).then((response) => {
-            const allTransactions = response.data;
-            setAppState({ loading: false, transactions: allTransactions });
-        });
-    };
-
+    // user state
+    const { user } = useAuthContext();
+    
     useEffect(() => {
-        setAppState({ loading: true });
+        // function to request all transactions from the DB
+        const getTransactions = async () => {
+            const apiURL =
+                "http://localhost:5000/api/transactions/";
 
-        getTransactions();
-    }, [setAppState]);
+            // sends authorization token as part of the request
+            const response = await fetch(apiURL, {
+                headers: {
+                    "Authorization": `Bearer ${user.token}`
+                }
+            });
+            const data = await response.json();
+
+            if(response.ok){
+                dispatch({type: "SET_TRANSACTIONS", payload: data});
+            }
+        };
+
+        // only try to get transactions if a user exists
+        if(user){
+            getTransactions();
+        }
+
+    }, [dispatch, user]);
 
     return (
         <Container fluid className="dashboard-container">
@@ -45,11 +58,8 @@ export default function Dashboard() {
                         <span className="dashboard-card-title">
                             Transactions
                         </span>
-                        <TransactionForm setAppState={setAppState} />
-                        <Transactions
-                            isLoading={appState.loading}
-                            transactions={appState.transactions}
-                        />
+                        <TransactionForm />
+                        <Transactions />
                     </Stack>
                 </Container>
                 <Container fluid>
@@ -58,11 +68,7 @@ export default function Dashboard() {
                             <span className="dashboard-card-title">
                                 Balance
                             </span>
-                            <MainChart
-                                isLoading={appState.loading}
-                                budget={appState.budget}
-                                transactions={appState.transactions}
-                            />
+                            <MainChart />
                         </Col>
                     </Row>
                     <Row>
@@ -73,19 +79,13 @@ export default function Dashboard() {
                             <span className="dashboard-card-title">
                                 Category summary
                             </span>
-                            <CategoryChart
-                                isLoading={appState.loading}
-                                transactions={appState.transactions}
-                            />
+                            <CategoryChart />
                         </Col>
                         <Col lg={6} className="dashboard-card goals rounded">
                             <span className="dashboard-card-title">
                                 Spending history
                             </span>
-                            <SpendingChart
-                                isLoading={appState.loading}
-                                transactions={appState.transactions}
-                            />
+                            <SpendingChart />
                         </Col>
                     </Row>
                 </Container>

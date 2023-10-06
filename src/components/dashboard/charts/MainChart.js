@@ -1,3 +1,6 @@
+// hooks
+import { useTransactionsContext } from "../../../hooks/useTransactionsContext";
+
 // recharts components
 import {
     LineChart,
@@ -9,16 +12,16 @@ import {
     ResponsiveContainer,
 } from "recharts";
 
-export default function MainChart(props) {
+export default function MainChart() {
     // app state
-    const { transactions, isLoading } = props;
+    const { transactions } = useTransactionsContext();
 
     let data = {}
 
     // building the data for the graph
-    if(!isLoading && transactions !== null){
+    if(transactions){
         const dates = transactions.map((transaction) =>
-            new Date(transaction.createdAt).toLocaleDateString()
+            new Date(transaction.createdAt).toLocaleDateString("en-ZA")
         );
         const amounts = transactions.map(function (transaction) {
             return transaction.type === "Expense"
