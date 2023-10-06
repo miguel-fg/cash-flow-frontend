@@ -7,7 +7,6 @@ import CloseButton from "react-bootstrap/CloseButton";
 import { useTransactionsContext } from "../../hooks/useTransactionsContext";
 import { useAuthContext } from "../../hooks/useAuthContext";
 
-//test push elliott
 // date formatter
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
