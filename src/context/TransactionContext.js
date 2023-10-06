@@ -7,7 +7,7 @@ export const transactionsReducer = (state, action) => {
         case "SET_TRANSACTIONS":
             return { transactions: action.payload };
         case "CREATE_TRANSACTION":
-            return { transactions: [action.payload, ...state.transactions]};
+            return { transactions: [action.payload, ...state.transactions] };
         case "DELETE_TRANSACTION":
             return {
                 transactions: state.transactions.filter(

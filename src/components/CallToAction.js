@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 export default function CallToAction(props) {
     return (
         <div className="col-md-12 text-center">
-            <Link to="/dashboard">
+            <Link to="/signup">
             <Button className="call-to-act">{props.name}</Button>
             </Link>
         </div>

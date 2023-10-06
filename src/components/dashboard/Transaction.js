@@ -5,6 +5,8 @@ import CloseButton from "react-bootstrap/CloseButton";
 
 // hooks
 import { useTransactionsContext } from "../../hooks/useTransactionsContext";
+import { useAuthContext } from "../../hooks/useAuthContext";
+
 //test push elliott
 // date formatter
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
@@ -13,13 +15,23 @@ export default function Transaction(props) {
     const { post } = props;
     const { dispatch } = useTransactionsContext();
 
+    const { user } = useAuthContext();
+
     // delete request
     const handleDelete = async () => {
+
+        //exits function if there is no user
+        if(!user){
+            return
+        }
+
         const id = post._id;
 
-        const apiURL = `https://cash-flow-backend-zt10.onrender.com/api/transactions/${id}`;
+        const apiURL = `http://localhost:5000/api/transactions/${id}`;
 
-        const response = await fetch(apiURL, { method: "DELETE" });
+        const response = await fetch(apiURL, { method: "DELETE", headers: {
+            "Authorization": `Bearer ${user.token}`
+        } });
         const data = await response.json();
 
         if (response.ok) {
