@@ -30,11 +30,13 @@ export default function Dashboard() {
             const apiURL =
                 "https://cash-flow-backend-zt10.onrender.com/api/transactions/";
 
+            const testApiURL = "http://localhost:5000/api/transactions";
+
             // sends authorization token as part of the request
-            const response = await fetch(apiURL, {
+            const response = await fetch(testApiURL, {
                 headers: {
-                    "Authorization": `Bearer ${user.token}`
-                }
+                    Authorization: `Bearer ${user.token}`,
+                },
             });
             const data = await response.json();
 

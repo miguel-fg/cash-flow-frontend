@@ -48,15 +48,17 @@ export default function TransactionForm() {
 
     // post request
     const sendData = async () => {
-        const apiURL = "https://cash-flow-backend-zt10.onrender.com/api/transactions/";
+        const apiURL =
+            "https://cash-flow-backend-zt10.onrender.com/api/transactions/";
+        const testApiURL = "http://localhost:5000/api/transactions/";
         const transaction = { title, type, amount, category };
 
-        const response = await fetch(apiURL, {
+        const response = await fetch(testApiURL, {
             method: "POST",
             body: JSON.stringify(transaction),
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${user.token}`,
+                Authorization: `Bearer ${user.token}`,
             },
         });
 
