@@ -9,6 +9,7 @@ import Home from "./pages/home";
 import Signup from "./pages/signup";
 import Login from "./pages/login";
 import Dashboard from "./pages/dashboard";
+import Balance from "./pages/balance";
 import NavBar from "./components/NavBar";
 
 // user hook
@@ -25,7 +26,8 @@ function App() {
             <NavBar />
             <Routes>
                 <Route exact path="/" element={user ? <Dashboard /> : <Home />} />
-                <Route path="signup" element={!user ? <Signup /> : <Navigate to="/" />} />
+                <Route path="/balance" element={<Balance /> } />
+                <Route path="signup" element={!user ? <Signup /> : <Navigate to="/balance" />} />
                 <Route path="login" element={!user ? <Login/>: <Navigate to="/" />} />
             </Routes>
         </BrowserRouter>

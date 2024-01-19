@@ -5,7 +5,7 @@ export const useTransactionsContext = () => {
     const context = useContext(TransactionsContext);
 
     if(!context) {
-        throw Error("useTransactionsContext must be used inside a WorkoutContextProvider");
+        throw Error("useTransactionsContext must be used inside a TransactionsContextProvider");
     }
 
     return context;
