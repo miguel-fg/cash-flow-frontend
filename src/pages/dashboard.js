@@ -16,10 +16,14 @@ import Stack from "react-bootstrap/Stack";
 // hooks
 import { useTransactionsContext } from "../hooks/useTransactionsContext";
 import { useAuthContext } from "../hooks/useAuthContext";
+import { useBudgetsContext } from "../hooks/useBudgetContext";
 
 export default function Dashboard() {
     // transaction state
-    const { dispatch }  = useTransactionsContext();
+    const { dispatch: dispatchTransactions }  = useTransactionsContext();
+
+    // budget state
+    const { dispatch: dispatchBudget } = useBudgetsContext();
 
     // user state
     const { user } = useAuthContext();
@@ -41,16 +45,36 @@ export default function Dashboard() {
             const data = await response.json();
 
             if(response.ok){
-                dispatch({type: "SET_TRANSACTIONS", payload: data});
+                dispatchTransactions({type: "SET_TRANSACTIONS", payload: data});
+            }
+        };
+
+        // function to request the current budget from the DB
+        const getBudget = async () => {
+            const apiURL =
+                "https://cash-flow-backend-zt10.onrender.com/api/budget/";
+
+            const testApiURL = "http://localhost:5000/api/budget";
+
+            const response = await fetch(testApiURL, {
+                headers: {
+                    Authorization: `Bearer ${user.token}`,
+                },
+            });
+
+            const data = await response.json();
+            if(response.ok){
+                dispatchBudget({type: "SET_BUDGET", payload: data[0].balance})
             }
         };
 
         // only try to get transactions if a user exists
         if(user){
             getTransactions();
+            getBudget();
         }
 
-    }, [dispatch, user]);
+    }, [dispatchTransactions, dispatchBudget, user]);
 
     return (
         <Container fluid className="dashboard-container">

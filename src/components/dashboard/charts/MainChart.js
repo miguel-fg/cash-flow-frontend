@@ -1,5 +1,6 @@
 // hooks
 import { useTransactionsContext } from "../../../hooks/useTransactionsContext";
+import { useBudgetsContext } from "../../../hooks/useBudgetContext";
 
 // recharts components
 import {
@@ -15,23 +16,30 @@ import {
 export default function MainChart() {
     // app state
     const { transactions } = useTransactionsContext();
+    const { balance } = useBudgetsContext();
 
     let data = {}
 
-    // building the data for the graph
+    // calculate running balance
+    let runningBalance = balance || 0;
+
+// building the data for the graph
     if(transactions){
+
+        const reversedTransactions = [...transactions].reverse();
+
         const dates = transactions.map((transaction) =>
             new Date(transaction.createdAt).toLocaleDateString("en-ZA")
         );
-        const amounts = transactions.map(function (transaction) {
-            return transaction.type === "Expense"
-                ? transaction.amount * -1
-                : transaction.amount;
+        const amounts = reversedTransactions.map((transaction) => {
+            const amount = transaction.type === "Expense"
+                    ? -transaction.amount
+                    : transaction.amount;;
+            runningBalance += amount;
+            return runningBalance;
         });
 
-        const reversedKeys = Object.keys(dates).reverse();
-
-        data = reversedKeys.map((index) => ({
+        data = dates.map((date, index) => ({
             date: dates[index],
             amount: amounts[index],
         }));
